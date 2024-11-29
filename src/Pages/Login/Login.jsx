@@ -114,17 +114,8 @@ const Login = () => {
 
           <p className="text-sm text-center mt-6">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-blue-600 hover:underline">
+            <Link to="/signup" className="text-blue-600 hover:underline">
               Sign Up
-            </Link>
-          </p>
-          <p className="text-sm text-center mt-4">
-            Forgot your password?{" "}
-            <Link
-              href="/forgot-password"
-              className="text-blue-500 hover:underline"
-            >
-              Reset Password
             </Link>
           </p>
         </form>
