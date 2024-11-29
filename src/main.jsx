@@ -9,7 +9,7 @@ import { store } from "./redux/store.js";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <div className="max-w-screen-xl mx-auto">
+      <div className="max-w-screen-2xl mx-auto">
         <RouterProvider router={router} />
       </div>
     </Provider>

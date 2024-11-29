@@ -7,7 +7,7 @@ export const flightsApi = baseApi.injectEndpoints({
         url: "/flights",
         method: "GET",
       }),
-      providesTags: ['Flights'],
+      providesTags: ["Flights"],
     }),
 
     getFlightDetails: builder.query({
@@ -15,7 +15,7 @@ export const flightsApi = baseApi.injectEndpoints({
         url: `/flights/${id}`,
         method: "GET",
       }),
-      providesTags: (result, error, id) => [{ type: 'Flight', id }],
+      providesTags: ["Flight"],
     }),
 
     addFlight: builder.mutation({
@@ -24,7 +24,7 @@ export const flightsApi = baseApi.injectEndpoints({
         method: "POST",
         body: newFlightData,
       }),
-      invalidatesTags: ['Flights'],
+      invalidatesTags: ["Flights", "Flight"],
     }),
 
     updateFlight: builder.mutation({
@@ -33,7 +33,7 @@ export const flightsApi = baseApi.injectEndpoints({
         method: "PUT",
         body: updatedData,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Flight', id }],
+      invalidatesTags: ["Flights", "Flight"],
     }),
 
     deleteFlight: builder.mutation({
@@ -41,7 +41,7 @@ export const flightsApi = baseApi.injectEndpoints({
         url: `/flights/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: (result, error, id) => [{ type: 'Flight', id }],
+      invalidatesTags: ["Flights", "Flight"],
     }),
   }),
 });
