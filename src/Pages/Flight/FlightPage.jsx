@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useGetFlightDetailsQuery } from "../../redux/features/flights/flightsApi";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 import {
   FaPlaneDeparture,
   FaPlaneArrival,
@@ -11,6 +13,7 @@ import {
   FaSuitcase,
   FaClipboardCheck,
 } from "react-icons/fa";
+import { useCreateBookingMutation } from "../../redux/features/bookings/bookingsApi";
 
 const FlightPage = () => {
   const params = useParams();
@@ -18,14 +21,35 @@ const FlightPage = () => {
   const { data, isLoading } = useGetFlightDetailsQuery(id);
   const navigate = useNavigate();
 
+  const user = useSelector((state) => state.auth.user);
+  const [numberOfSeats, setNumberOfSeats] = useState(1);
+  const [openModal, setOpenModal] = useState(false);
+
+  const [createBooking] = useCreateBookingMutation();
+
   if (isLoading) return <div>Loading...</div>;
 
   const flight = data?.data || null;
   if (!flight) return <div>Flight not found</div>;
 
-  const handleBooking = () => {
-    // Navigate to booking page or trigger booking functionality
-    navigate(`/booking/${flight._id}`);
+  const handleBookingSubmit = async () => {
+    const bookingData = {
+      userId: user._id,
+      flightId: flight._id,
+      numberOfSeats: Number(numberOfSeats),
+    };
+    console.log(bookingData);
+
+    try {
+      await createBooking(bookingData);
+      setOpenModal(false); // Close modal on success
+      alert("Booking created successfully!");
+      // Optionally navigate to another page, like user bookings page
+      // navigate('/user-bookings');
+    } catch (error) {
+      console.error("Booking failed", error);
+      alert("There was an error with your booking.");
+    }
   };
 
   return (
@@ -101,7 +125,7 @@ const FlightPage = () => {
             {/* Book Now Button */}
             <div className="mt-6 text-center">
               <button
-                onClick={handleBooking}
+                onClick={() => setOpenModal(true)}
                 className="px-8 py-4 bg-blue-600 text-white font-semibold text-lg rounded-lg shadow-md hover:bg-blue-700 transform transition duration-300 hover:scale-105"
               >
                 Book Now
@@ -153,6 +177,90 @@ const FlightPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Booking Modal */}
+      {openModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Booking Information
+            </h2>
+
+            <div className="space-y-4">
+              {/* Name Input */}
+              <div>
+                <label className="block text-gray-700">Name</label>
+                <input
+                  type="text"
+                  value={user.name}
+                  readOnly
+                  className="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
+                />
+              </div>
+
+              {/* Email Input */}
+              <div>
+                <label className="block text-gray-700">Email</label>
+                <input
+                  type="email"
+                  value={user.email}
+                  readOnly
+                  className="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
+                />
+              </div>
+
+              {/* Phone Input */}
+              <div>
+                <label className="block text-gray-700">Phone</label>
+                <input
+                  type="text"
+                  value={user.phone || "Not Provided"}
+                  readOnly
+                  className="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
+                />
+              </div>
+
+              {/* Address Input */}
+              <div>
+                <label className="block text-gray-700">Address</label>
+                <input
+                  type="text"
+                  value={user.address || "Not Provided"}
+                  readOnly
+                  className="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
+                />
+              </div>
+
+              {/* Number of Seats Input */}
+              <div>
+                <label className="block text-gray-700">Number of Seats</label>
+                <input
+                  type="number"
+                  value={numberOfSeats}
+                  min="1"
+                  onChange={(e) => setNumberOfSeats(e.target.value)}
+                  className="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
+                />
+              </div>
+
+              <div className="mt-6 flex justify-between">
+                <button
+                  onClick={() => setOpenModal(false)}
+                  className="px-6 py-2 bg-gray-500 text-white rounded-lg"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={handleBookingSubmit}
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg"
+                >
+                  Confirm Booking
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
