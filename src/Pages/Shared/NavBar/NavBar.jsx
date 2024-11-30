@@ -1,15 +1,26 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../../../redux/features/auth/authSlice";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
 
+  const handleLogOut = () => {
+    dispatch(logout());
+    localStorage.clear();
+    window.location.reload();
+    setIsMenuOpen(false);
+  };
+
   return (
-    <nav className="bg-blue-600 text-white shadow-md">
+    <nav className="bg-black text-white shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative">
         {/* Logo (Text) */}
         <div className="flex items-center">
@@ -17,7 +28,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex space-x-6 font-semibold">
           <Link to="/" className="hover:text-gray-200">
             Home
           </Link>
@@ -30,9 +41,21 @@ const Navbar = () => {
           <Link to="/contact" className="hover:text-gray-200">
             Contact
           </Link>
-          <Link to="/login" className="hover:text-gray-200">
-            Login
-          </Link>
+          {user ? (
+            <>
+              <Link to="/dashboard" className="hover:text-gray-200">
+                Dashboard
+              </Link>
+
+              <Link onClick={handleLogOut} className="focus:outline-none">
+                Logout
+              </Link>
+            </>
+          ) : (
+            <Link to="/login" className="hover:text-gray-200">
+              Login
+            </Link>
+          )}
         </div>
 
         {/* Hamburger Icon for Mobile */}
@@ -63,37 +86,63 @@ const Navbar = () => {
       <div
         className={`md:hidden ${
           isMenuOpen ? "block" : "hidden"
-        } absolute top-0 left-0 w-full bg-blue-600 z-40`}
+        } absolute top-0 left-0 w-full bg-black text-white z-40`}
       >
         <div className="px-6 py-4 space-y-4">
           <Link
             to="/"
-            className="block text-white hover:bg-blue-700 rounded-md px-4 py-2"
+            className="block text-white hover:bg-gray-700 rounded-md px-4 py-2"
             onClick={handleLinkClick}
           >
             Home
           </Link>
           <Link
             to="/flights"
-            className="block text-white hover:bg-blue-700 rounded-md px-4 py-2"
+            className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
             onClick={handleLinkClick}
           >
             Flights
           </Link>
           <Link
             to="/bookings"
-            className="block text-white hover:bg-blue-700 rounded-md px-4 py-2"
+            className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
             onClick={handleLinkClick}
           >
             My Bookings
           </Link>
           <Link
             to="/contact"
-            className="block text-white hover:bg-blue-700 rounded-md px-4 py-2"
+            className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
             onClick={handleLinkClick}
           >
             Contact
           </Link>
+          {user ? (
+            <>
+              <Link
+                to="/dashboard"
+                className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
+                onClick={handleLinkClick}
+              >
+                Dashboard
+              </Link>
+
+              <Link
+                onClick={handleLogOut}
+                className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
+              >
+                Logout
+              </Link>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
+              onClick={handleLinkClick}
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>
