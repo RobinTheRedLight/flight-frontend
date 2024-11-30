@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
-import { useGetFlightsQuery } from "../../../redux/features/flights/flightsApi";
-import FlightCard from "../../../components/FlightCard";
+import { useGetFlightsQuery } from "../../redux/features/flights/flightsApi";
+import FlightCard from "../../components/FlightCard";
 
 const FlightsPage = () => {
   const [searchParams] = useSearchParams();
@@ -12,10 +12,9 @@ const FlightsPage = () => {
 
   const flights = data?.data || [];
 
- 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toISOString().split("T")[0]; 
+    return date.toISOString().split("T")[0];
   };
 
   const filteredFlights = flights.filter((flight) => {
@@ -37,7 +36,7 @@ const FlightsPage = () => {
 
   return (
     <div className="container mx-auto p-8">
-      <h2 className="text-3xl font-semibold text-center mb-8">
+      <h2 className="text-4xl font-bold text-center mb-8">
         Available Flights
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
