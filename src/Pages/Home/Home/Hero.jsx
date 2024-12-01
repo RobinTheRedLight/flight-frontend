@@ -31,7 +31,7 @@ const Hero = () => {
 
   return (
     <div
-      className="relative bg-cover bg-center h-screen md:h-[60vh]"
+      className="relative bg-cover bg-center h-screen md:h-[70vh]"
       style={{ backgroundImage: "url('./src/assets/Home/hero.jpg')" }}
     >
       <div className="absolute inset-0 bg-black opacity-50"></div>
