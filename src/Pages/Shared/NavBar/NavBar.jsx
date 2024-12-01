@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../../redux/features/auth/authSlice";
+import { FaPlaneDeparture } from "react-icons/fa";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,8 +23,8 @@ const Navbar = () => {
   return (
     <nav className="bg-black text-white shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative">
-        {/* Logo (Text) */}
         <div className="flex items-center">
+          <FaPlaneDeparture className="mr-3 text-3xl" />{" "}
           <span className="text-2xl font-bold">FlightBook</span>
         </div>
 
@@ -35,16 +36,19 @@ const Navbar = () => {
           <Link to="/flights" className="hover:text-gray-200">
             Flights
           </Link>
-          <Link to="/bookings" className="hover:text-gray-200">
-            My Bookings
-          </Link>
-          <Link to="/contact" className="hover:text-gray-200">
-            Contact
-          </Link>
+
           {user ? (
             <>
               <Link to="/dashboard" className="hover:text-gray-200">
                 Dashboard
+              </Link>
+
+              <Link to="/contact" className="hover:text-gray-200">
+                Contact
+              </Link>
+
+              <Link to="/about" className="hover:text-gray-200">
+                About
               </Link>
 
               <Link onClick={handleLogOut} className="focus:outline-none">
@@ -52,9 +56,19 @@ const Navbar = () => {
               </Link>
             </>
           ) : (
-            <Link to="/login" className="hover:text-gray-200">
-              Login
-            </Link>
+            <>
+              <Link to="/contact" className="hover:text-gray-200">
+                Contact
+              </Link>
+
+              <Link to="/about" className="hover:text-gray-200">
+                About
+              </Link>
+
+              <Link to="/login" className="hover:text-gray-200">
+                Login
+              </Link>
+            </>
           )}
         </div>
 
@@ -98,50 +112,71 @@ const Navbar = () => {
           </Link>
           <Link
             to="/flights"
-            className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
+            className="block text-white hover:bg-gray-700 rounded-md px-4 py-2"
             onClick={handleLinkClick}
           >
             Flights
           </Link>
-          <Link
-            to="/bookings"
-            className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
-            onClick={handleLinkClick}
-          >
-            My Bookings
-          </Link>
-          <Link
-            to="/contact"
-            className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
-            onClick={handleLinkClick}
-          >
-            Contact
-          </Link>
+
           {user ? (
             <>
               <Link
                 to="/dashboard"
-                className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
+                className="block text-white hover:bg-gray-700 rounded-md px-4 py-2"
                 onClick={handleLinkClick}
               >
                 Dashboard
               </Link>
 
               <Link
+                to="/contact"
+                className="block text-white hover:bg-gray-700 rounded-md px-4 py-2"
+                onClick={handleLinkClick}
+              >
+                Contact
+              </Link>
+
+              <Link
+                to="/about"
+                className="block text-white hover:bg-gray-700 rounded-md px-4 py-2"
+                onClick={handleLinkClick}
+              >
+                About
+              </Link>
+
+              <Link
                 onClick={handleLogOut}
-                className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
+                className="block text-white hover:bg-gray-700 rounded-md px-4 py-2"
               >
                 Logout
               </Link>
             </>
           ) : (
-            <Link
-              to="/login"
-              className="block text-white hover:bg-gray-700  rounded-md px-4 py-2"
-              onClick={handleLinkClick}
-            >
-              Login
-            </Link>
+            <>
+              <Link
+                to="/contact"
+                className="block text-white hover:bg-gray-700 rounded-md px-4 py-2"
+                onClick={handleLinkClick}
+              >
+                Contact
+              </Link>
+
+              <Link
+                to="/about"
+                className="block text-white hover:bg-gray-700 rounded-md px-4 py-2"
+                onClick={handleLinkClick}
+              >
+                About
+              </Link>
+
+              <Link
+                to="/login"
+                className="block text-white hover:bg-gray-700 rounded-md px-4 py-2"
+                onClick={handleLinkClick}
+              >
+                Login
+              </Link>
+            </>
           )}
         </div>
       </div>

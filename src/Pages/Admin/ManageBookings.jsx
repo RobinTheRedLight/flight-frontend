@@ -2,13 +2,9 @@ import BookingCard from "../../components/BookingCard";
 import { useGetAllBookingsQuery } from "../../redux/features/bookings/bookingsApi";
 
 const ManageBookings = () => {
-  const { data, isLoading, isError } = useGetAllBookingsQuery();
+  const { data, isLoading } = useGetAllBookingsQuery();
 
   if (isLoading) return <div className="text-center">Loading...</div>;
-  if (isError)
-    return (
-      <div className="text-center text-red-500">Failed to load bookings</div>
-    );
 
   const bookings = data?.data || [];
 

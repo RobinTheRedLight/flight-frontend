@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaHome, FaUsers } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 import { MdOutlineFlightClass } from "react-icons/md";
 import { RiFlightTakeoffFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
@@ -37,7 +37,7 @@ const AdminDashboard = () => {
             <>
               <li>
                 <NavLink onClick={closeDrawer} to="/dashboard/profile">
-                  <FaHome /> Admin Profile
+                  <FaHome /> Profile
                 </NavLink>
               </li>
               <li>
@@ -51,27 +51,22 @@ const AdminDashboard = () => {
                   <MdOutlineFlightClass /> Manage Bookings
                 </NavLink>
               </li>
-              <li>
-                <NavLink onClick={closeDrawer} to="/dashboard/admin/users">
-                  <FaUsers /> Manage Users
-                </NavLink>
-              </li>
             </>
           ) : (
             <>
               <li>
                 <NavLink onClick={closeDrawer} to="/dashboard/profile">
-                  <FaHome /> User Profile
+                  <FaHome />
+                  Profile
                 </NavLink>
               </li>
               <li>
                 <NavLink onClick={closeDrawer} to="/dashboard/user/bookings">
-                  <MdOutlineFlightClass /> Manage Bookings
+                  <MdOutlineFlightClass /> My Bookings
                 </NavLink>
               </li>
             </>
           )}
-          <div className="divider"></div>
           <li>
             <NavLink onClick={closeDrawer} to="/">
               <FaHome /> Home

@@ -37,10 +37,10 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="container mx-auto text-center text-white relative z-10 p-8 h-full flex justify-center items-center ">
         <div>
-          <h1 className="text-4xl font-semibold mb-4">
+          <h1 className="text-4xl font-semibold lg:font-bold  mb-4">
             Welcome to FlightBooking
           </h1>
-          <p className="text-lg mb-8">
+          <p className="text-lg lg:font-semibold mb-8">
             Search and book your next flight with ease. Find available flights
             based on your preferences.
           </p>

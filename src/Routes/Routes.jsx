@@ -9,6 +9,7 @@ import FlightsPage from "../Pages/Flights/FlightsPage";
 import FlightPage from "../Pages/Flight/FlightPage";
 import ManageBookings from "../Pages/Admin/ManageBookings";
 import Bookings from "../Pages/Bookings/Bookings";
+import Profile from "../Pages/Profile/profile";
 
 export const router = createBrowserRouter([
   {
@@ -27,10 +28,6 @@ export const router = createBrowserRouter([
         path: "/flight/:id",
         element: <FlightPage></FlightPage>,
       },
-      {
-        path: "/bookings",
-        element: <Bookings></Bookings>,
-      }
     ],
   },
   {
@@ -52,7 +49,15 @@ export const router = createBrowserRouter([
       {
         path: "admin/bookings",
         element: <ManageBookings></ManageBookings>,
-      }
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
+      },
+      {
+        path: "user/bookings",
+        element: <Bookings></Bookings>,
+      },
     ],
   },
 ]);

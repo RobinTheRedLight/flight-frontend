@@ -19,7 +19,7 @@ const Bookings = () => {
           Your Bookings
         </h1>
         {bookings.length === 0 ? (
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 h-screen text-center">
             You don't have any bookings yet.
           </p>
         ) : (

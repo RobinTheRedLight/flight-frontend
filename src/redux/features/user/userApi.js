@@ -17,7 +17,21 @@ export const flightsApi = baseApi.injectEndpoints({
       }),
       providesTags: ["User"],
     }),
+
+    updateProfile: builder.mutation({
+      query: ({ profileData, id }) => ({
+        url: `/users/${id}`,
+        method: "PUT",
+        body: profileData,
+      }),
+      invalidatesTags: ["User", "Users"],
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useGetSingleUserQuery } = flightsApi;
+export const {
+  useGetUsersQuery,
+  useGetSingleUserQuery,
+  useGetProfileQuery,
+  useUpdateProfileMutation,
+} = flightsApi;

@@ -39,13 +39,17 @@ const FlightsPage = () => {
       <h2 className="text-3xl font-bold text-center mb-8 uppercase">
         Available Flights
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div>
         {filteredFlights.length > 0 ? (
-          filteredFlights.map((flight) => (
-            <FlightCard key={flight._id} flight={flight} />
-          ))
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredFlights.map((flight) => (
+              <FlightCard key={flight._id} flight={flight} />
+            ))}
+          </div>
         ) : (
-          <p>No flights found matching your criteria.</p>
+          <p className="h-screen text-center text-lg text-gray-600 ">
+            No flights found matching your criteria.
+          </p>
         )}
       </div>
     </div>

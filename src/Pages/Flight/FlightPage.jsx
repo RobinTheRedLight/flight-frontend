@@ -49,16 +49,14 @@ const FlightPage = () => {
       text: "Please wait while we confirm your booking.",
       showConfirmButton: false,
       didOpen: () => {
-        Swal.showLoading(); 
+        Swal.showLoading();
       },
-      allowOutsideClick: false, 
+      allowOutsideClick: false,
     });
 
     try {
-   
       await createBooking(bookingData);
 
-   
       swalInstance.close();
       Swal.fire({
         title: "Success!",
@@ -66,14 +64,11 @@ const FlightPage = () => {
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => {
-
         setOpenModal(false);
 
-
-        navigate("/");
+        navigate("/bookings");
       });
     } catch (error) {
-  
       swalInstance.close();
       Swal.fire({
         title: "Error!",
