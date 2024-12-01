@@ -12,6 +12,8 @@ import Bookings from "../Pages/Bookings/Bookings";
 import Profile from "../Pages/Profile/profile";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import About from "../Pages/About/About";
+import Contact from "../Pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
       },
       {
         path: "/flights",
