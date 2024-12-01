@@ -39,7 +39,7 @@ const Navbar = () => {
 
           {user ? (
             <>
-              <Link to="/dashboard" className="hover:text-gray-200">
+              <Link to="/dashboard/profile" className="hover:text-gray-200">
                 Dashboard
               </Link>
 
@@ -121,7 +121,7 @@ const Navbar = () => {
           {user ? (
             <>
               <Link
-                to="/dashboard"
+                to="/dashboard/profile"
                 className="block text-white hover:bg-gray-700 rounded-md px-4 py-2"
                 onClick={handleLinkClick}
               >

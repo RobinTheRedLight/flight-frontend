@@ -66,7 +66,7 @@ const FlightPage = () => {
       }).then(() => {
         setOpenModal(false);
 
-        navigate("/bookings");
+        navigate("/dashboard/user/bookings");
       });
     } catch (error) {
       swalInstance.close();

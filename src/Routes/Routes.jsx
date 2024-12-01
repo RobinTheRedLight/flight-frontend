@@ -10,6 +10,8 @@ import FlightPage from "../Pages/Flight/FlightPage";
 import ManageBookings from "../Pages/Admin/ManageBookings";
 import Bookings from "../Pages/Bookings/Bookings";
 import Profile from "../Pages/Profile/profile";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +28,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/flight/:id",
-        element: <FlightPage></FlightPage>,
+        element: (
+          <PrivateRoute>
+            <FlightPage></FlightPage>
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -40,15 +46,27 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <AdminDashboard></AdminDashboard>,
+    element: (
+      <PrivateRoute>
+        <AdminDashboard></AdminDashboard>{" "}
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "admin/flights",
-        element: <ManageFlights></ManageFlights>,
+        element: (
+          <AdminRoute>
+            <ManageFlights></ManageFlights>
+          </AdminRoute>
+        ),
       },
       {
         path: "admin/bookings",
-        element: <ManageBookings></ManageBookings>,
+        element: (
+          <AdminRoute>
+            <ManageBookings></ManageBookings>,
+          </AdminRoute>
+        ),
       },
       {
         path: "profile",
