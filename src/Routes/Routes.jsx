@@ -8,6 +8,7 @@ import ManageFlights from "../Pages/Admin/ManageFlights";
 import FlightsPage from "../Pages/Flights/FlightsPage";
 import FlightPage from "../Pages/Flight/FlightPage";
 import ManageBookings from "../Pages/Admin/ManageBookings";
+import Bookings from "../Pages/Bookings/Bookings";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
         path: "/flight/:id",
         element: <FlightPage></FlightPage>,
       },
+      {
+        path: "/bookings",
+        element: <Bookings></Bookings>,
+      }
     ],
   },
   {

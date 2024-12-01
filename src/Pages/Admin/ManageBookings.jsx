@@ -13,7 +13,7 @@ const ManageBookings = () => {
   const bookings = data?.data || [];
 
   return (
-    <div className="min-h-screen pt-5">
+    <div className="min-h-screen mt-14 lg:mt-5 ">
       <div className="max-w-7xl mx-auto p-4 ">
         {/* Page Title */}
         <h1 className="text-3xl font-bold text-gray-900  mb-8">

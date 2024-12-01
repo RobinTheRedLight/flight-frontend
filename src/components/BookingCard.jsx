@@ -8,26 +8,22 @@ import {
 import { useState } from "react";
 import { useUpdateBookingMutation } from "../redux/features/bookings/bookingsApi";
 import { useGetFlightDetailsQuery } from "../redux/features/flights/flightsApi";
-import { useGetSingleUserQuery } from "../redux/features/user/userApi";
 import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
 const BookingCard = ({ booking }) => {
-  const { _id, flightId, numberOfSeats, userId, status, totalPrice } = booking;
+  const { _id, flightId, numberOfSeats, status, totalPrice } = booking;
   const { data: flight, isLoading: flightLoading } =
     useGetFlightDetailsQuery(flightId);
-  const { data: user, isLoading: userLoading } = useGetSingleUserQuery(userId);
   const [updateBooking] = useUpdateBookingMutation();
   const [loading, setLoading] = useState(false);
 
-  if (flightLoading || userLoading)
+  if (flightLoading)
     return <div className="text-center">Loading...</div>;
 
   const flightData = flight?.data || null;
-  const userData = user?.data || null;
 
   const { airline, flightNumber, origin, destination, date, time } = flightData;
-  const { name, email, phone } = userData;
 
   const handleUpdateBooking = async (newStatus) => {
     setLoading(true);
@@ -40,6 +36,7 @@ const BookingCard = ({ booking }) => {
         icon: "success",
         confirmButtonText: "OK",
       });
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       Swal.fire({
         title: "Error",
@@ -55,16 +52,15 @@ const BookingCard = ({ booking }) => {
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-transform transform hover:scale-103">
       <div className="space-y-4">
-        {/* Header: Airline Name */}
+        {/* Header: Airline Name and Status */}
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-semibold text-gray-800">{airline}</h2>
-          <span
-            className={`text-lg font-semibold ${
-              status === "confirmed" ? "text-green-600" : "text-red-600"
-            }`}
-          >
-            {status.charAt(0).toUpperCase() + status.slice(1)}
-          </span>
+          {/* Show Pending only if status is not confirmed */}
+          {status !== "confirmed" && (
+            <span className="text-lg font-semibold text-yellow-500">
+              Pending
+            </span>
+          )}
         </div>
 
         {/* Flight Number - now placed under the airline name */}
@@ -107,10 +103,10 @@ const BookingCard = ({ booking }) => {
           </div>
         </div>
 
-        {/* Admin Action: Update Status */}
-        <div className="mt-6 flex space-x-4">
+        {/* Admin Action: Confirm Booking */}
+        <div className="mt-6 flex justify-center">
           {/* Show Confirm Button if the booking is not confirmed */}
-          {status !== "confirmed" ? (
+          {status !== "confirmed" && (
             <button
               onClick={() => handleUpdateBooking("confirmed")}
               disabled={loading}
@@ -118,18 +114,14 @@ const BookingCard = ({ booking }) => {
             >
               {loading ? "Confirming..." : "Confirm Booking"}
             </button>
-          ) : null}
+          )}
 
-          {/* Show Cancel Button only if the booking is confirmed */}
-          {status === "confirmed" ? (
-            <button
-              onClick={() => handleUpdateBooking("cancelled")}
-              disabled={loading}
-              className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all duration-200 disabled:opacity-50"
-            >
-              {loading ? "Cancelling..." : "Cancel Booking"}
-            </button>
-          ) : null}
+          {/* Message when booking is already confirmed */}
+          {status === "confirmed" && (
+            <div className="text-lg font-semibold text-green-600 mt-4">
+              Booking Confirmed
+            </div>
+          )}
         </div>
       </div>
     </div>

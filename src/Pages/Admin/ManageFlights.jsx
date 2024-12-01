@@ -129,7 +129,7 @@ const ManageFlights = () => {
   };
 
   return (
-    <div className="w-full p-4 lg:max-w-7xl mx-auto mt-20 lg:mt-5">
+    <div className="w-full p-4 lg:max-w-7xl mx-auto mt-14 lg:mt-5">
       <h1 className="text-3xl font-bold mb-6">Manage Flights</h1>
 
       {/* Add Flight Button */}
