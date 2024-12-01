@@ -2,13 +2,13 @@
 import { useSelector } from "react-redux";
 import { useGetUserBookingsQuery } from "../../redux/features/bookings/bookingsApi";
 import UserBookingCard from "../../components/UserBookingCard";
+import Loading from "../../components/Loading";
 
 const Bookings = () => {
   const user = useSelector((state) => state.auth.user);
   const { data, isLoading } = useGetUserBookingsQuery(user._id);
 
-  if (isLoading)
-    return <div className="text-center text-gray-600">Loading...</div>;
+  if (isLoading) return <Loading></Loading>;
 
   const bookings = data?.data || [];
 

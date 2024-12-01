@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useUpdateBookingMutation } from "../redux/features/bookings/bookingsApi";
 import { useGetFlightDetailsQuery } from "../redux/features/flights/flightsApi";
 import Swal from "sweetalert2";
+import PostLoading from "./PostLoading";
 
 /* eslint-disable react/prop-types */
 const BookingCard = ({ booking }) => {
@@ -18,8 +19,7 @@ const BookingCard = ({ booking }) => {
   const [updateBooking] = useUpdateBookingMutation();
   const [loading, setLoading] = useState(false);
 
-  if (flightLoading)
-    return <div className="text-center">Loading...</div>;
+  if (flightLoading) return <PostLoading></PostLoading>;
 
   const flightData = flight?.data || null;
 
@@ -36,7 +36,7 @@ const BookingCard = ({ booking }) => {
         icon: "success",
         confirmButtonText: "OK",
       });
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       Swal.fire({
         title: "Error",

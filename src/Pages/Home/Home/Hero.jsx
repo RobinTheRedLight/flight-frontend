@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import HeroImg from "../../../assets/Home/Hero.jpg";
 
 const Hero = () => {
   const [searchCriteria, setSearchCriteria] = useState({
@@ -32,7 +33,7 @@ const Hero = () => {
   return (
     <div
       className="relative bg-cover bg-center h-screen md:h-[70vh]"
-      style={{ backgroundImage: "url('./src/assets/Home/hero.jpg')" }}
+      style={{ backgroundImage: `url(${HeroImg})` }}
     >
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="container mx-auto text-center text-white relative z-10 p-8 h-full flex justify-center items-center ">

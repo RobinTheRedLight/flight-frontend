@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   useGetFlightsQuery,
@@ -161,7 +161,10 @@ const ManageFlights = () => {
             >
               {/* Flight Form Fields */}
               <div className="mb-4">
-                <label htmlFor="flightNumber" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="flightNumber"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Flight Number
                 </label>
                 <input
@@ -170,11 +173,18 @@ const ManageFlights = () => {
                   {...register("flightNumber", { required: true })}
                   className="mt-1 p-2 w-full border border-gray-300 rounded-md"
                 />
-                {errors.flightNumber && <p className="text-red-500 text-xs">Flight Number is required</p>}
+                {errors.flightNumber && (
+                  <p className="text-red-500 text-xs">
+                    Flight Number is required
+                  </p>
+                )}
               </div>
 
               <div className="mb-4">
-                <label htmlFor="airline" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="airline"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Airline
                 </label>
                 <input
@@ -183,11 +193,16 @@ const ManageFlights = () => {
                   {...register("airline", { required: true })}
                   className="mt-1 p-2 w-full border border-gray-300 rounded-md"
                 />
-                {errors.airline && <p className="text-red-500 text-xs">Airline is required</p>}
+                {errors.airline && (
+                  <p className="text-red-500 text-xs">Airline is required</p>
+                )}
               </div>
 
               <div className="mb-4">
-                <label htmlFor="origin" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="origin"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Origin
                 </label>
                 <input
@@ -196,11 +211,16 @@ const ManageFlights = () => {
                   {...register("origin", { required: true })}
                   className="mt-1 p-2 w-full border border-gray-300 rounded-md"
                 />
-                {errors.origin && <p className="text-red-500 text-xs">Origin is required</p>}
+                {errors.origin && (
+                  <p className="text-red-500 text-xs">Origin is required</p>
+                )}
               </div>
 
               <div className="mb-4">
-                <label htmlFor="destination" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="destination"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Destination
                 </label>
                 <input
@@ -209,11 +229,18 @@ const ManageFlights = () => {
                   {...register("destination", { required: true })}
                   className="mt-1 p-2 w-full border border-gray-300 rounded-md"
                 />
-                {errors.destination && <p className="text-red-500 text-xs">Destination is required</p>}
+                {errors.destination && (
+                  <p className="text-red-500 text-xs">
+                    Destination is required
+                  </p>
+                )}
               </div>
 
               <div className="mb-4">
-                <label htmlFor="date" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="date"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Date
                 </label>
                 <input
@@ -222,11 +249,16 @@ const ManageFlights = () => {
                   {...register("date", { required: true })}
                   className="mt-1 p-2 w-full border border-gray-300 rounded-md"
                 />
-                {errors.date && <p className="text-red-500 text-xs">Date is required</p>}
+                {errors.date && (
+                  <p className="text-red-500 text-xs">Date is required</p>
+                )}
               </div>
 
               <div className="mb-4">
-                <label htmlFor="time" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="time"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Time
                 </label>
                 <input
@@ -235,11 +267,16 @@ const ManageFlights = () => {
                   {...register("time", { required: true })}
                   className="mt-1 p-2 w-full border border-gray-300 rounded-md"
                 />
-                {errors.time && <p className="text-red-500 text-xs">Time is required</p>}
+                {errors.time && (
+                  <p className="text-red-500 text-xs">Time is required</p>
+                )}
               </div>
 
               <div className="mb-4">
-                <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="price"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Price
                 </label>
                 <input
@@ -248,11 +285,16 @@ const ManageFlights = () => {
                   {...register("price", { required: true })}
                   className="mt-1 p-2 w-full border border-gray-300 rounded-md"
                 />
-                {errors.price && <p className="text-red-500 text-xs">Price is required</p>}
+                {errors.price && (
+                  <p className="text-red-500 text-xs">Price is required</p>
+                )}
               </div>
 
               <div className="mb-4">
-                <label htmlFor="availableSeats" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="availableSeats"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Available Seats
                 </label>
                 <input
@@ -261,7 +303,11 @@ const ManageFlights = () => {
                   {...register("availableSeats", { required: true })}
                   className="mt-1 p-2 w-full border border-gray-300 rounded-md"
                 />
-                {errors.availableSeats && <p className="text-red-500 text-xs">Available Seats are required</p>}
+                {errors.availableSeats && (
+                  <p className="text-red-500 text-xs">
+                    Available Seats are required
+                  </p>
+                )}
               </div>
 
               {/* Submit Button */}
@@ -273,8 +319,10 @@ const ManageFlights = () => {
                 >
                   {isAdding || isUpdating ? (
                     <span>Loading...</span>
+                  ) : editFlight ? (
+                    "Update Flight"
                   ) : (
-                    editFlight ? "Update Flight" : "Add Flight"
+                    "Add Flight"
                   )}
                 </button>
                 <button
@@ -295,7 +343,9 @@ const ManageFlights = () => {
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 overflow-auto">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">
             <h2 className="text-2xl font-semibold mb-4">Are you sure?</h2>
-            <p className="text-gray-600 mb-6">Do you want to delete this flight?</p>
+            <p className="text-gray-600 mb-6">
+              Do you want to delete this flight?
+            </p>
             <div className="flex justify-between">
               <button
                 onClick={handleDeleteCancel}
@@ -320,20 +370,42 @@ const ManageFlights = () => {
         <table className="min-w-full bg-white border border-gray-200">
           <thead>
             <tr>
-              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Flight Number</th>
-              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Airline</th>
-              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Origin</th>
-              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Destination</th>
-              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Date</th>
-              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Time</th>
-              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Price</th>
-              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Available Seats</th>
-              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Actions</th>
+              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                Flight Number
+              </th>
+              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                Airline
+              </th>
+              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                Origin
+              </th>
+              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                Destination
+              </th>
+              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                Date
+              </th>
+              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                Time
+              </th>
+              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                Price
+              </th>
+              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                Available Seats
+              </th>
+              <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
             {flightsLoading ? (
-              <tr><td colSpan="9" className="py-2 px-4 text-center">Loading...</td></tr>
+              <tr>
+                <td colSpan="9" className="py-2 px-4 text-center">
+                  Loading...
+                </td>
+              </tr>
             ) : (
               flights.data.map((flight) => (
                 <tr key={flight._id}>
@@ -341,10 +413,16 @@ const ManageFlights = () => {
                   <td className="py-2 px-4 border-b">{flight.airline}</td>
                   <td className="py-2 px-4 border-b">{flight.origin}</td>
                   <td className="py-2 px-4 border-b">{flight.destination}</td>
-                  <td className="py-2 px-4 border-b">{flight.date.substring(0, 10)}</td>
-                  <td className="py-2 px-4 border-b">{formatTime(flight.time)}</td>
+                  <td className="py-2 px-4 border-b">
+                    {flight.date.substring(0, 10)}
+                  </td>
+                  <td className="py-2 px-4 border-b">
+                    {formatTime(flight.time)}
+                  </td>
                   <td className="py-2 px-4 border-b">${flight.price}</td>
-                  <td className="py-2 px-4 border-b">{flight.availableSeats}</td>
+                  <td className="py-2 px-4 border-b">
+                    {flight.availableSeats}
+                  </td>
                   <td className="py-2 px-4 border-b">
                     <button
                       onClick={() => handleEditClick(flight)}

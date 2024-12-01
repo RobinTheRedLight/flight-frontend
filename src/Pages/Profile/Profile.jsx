@@ -5,6 +5,7 @@ import {
   useUpdateProfileMutation,
 } from "../../redux/features/user/userApi";
 import { useSelector } from "react-redux";
+import Loading from "../../components/Loading";
 
 const Profile = () => {
   const user = useSelector((state) => state.auth.user);
@@ -19,7 +20,7 @@ const Profile = () => {
     address: "",
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading></Loading>;
 
   const profile = data?.data || {};
 

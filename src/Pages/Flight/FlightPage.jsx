@@ -17,6 +17,7 @@ import {
 } from "react-icons/fa";
 import { useCreateBookingMutation } from "../../redux/features/bookings/bookingsApi";
 import BookModal from "../../components/BookModal";
+import Loading from "../../components/Loading";
 
 const FlightPage = () => {
   const params = useParams();
@@ -30,7 +31,7 @@ const FlightPage = () => {
 
   const [createBooking] = useCreateBookingMutation();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading></Loading>;
 
   const flight = data?.data || null;
   if (!flight) return <div>Flight not found</div>;

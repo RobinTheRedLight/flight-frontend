@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { useGetFlightsQuery } from "../../redux/features/flights/flightsApi";
 import FlightCard from "../../components/FlightCard";
+import Loading from "../../components/Loading";
 
 const FlightsPage = () => {
   const [searchParams] = useSearchParams();
@@ -31,7 +32,7 @@ const FlightsPage = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading></Loading>;
   }
 
   return (

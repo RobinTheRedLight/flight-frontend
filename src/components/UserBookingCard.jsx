@@ -8,14 +8,14 @@ import {
   FaClock,
 } from "react-icons/fa";
 import { useGetFlightDetailsQuery } from "../redux/features/flights/flightsApi";
+import PostLoading from "./PostLoading";
 
 const UserBookingCard = ({ booking }) => {
   const { flightId, numberOfSeats, status, totalPrice } = booking;
   const { data: flight, isLoading: flightLoading } =
     useGetFlightDetailsQuery(flightId);
 
-  if (flightLoading)
-    return <div className="text-center text-gray-600">Loading...</div>;
+  if (flightLoading) return <PostLoading></PostLoading>;
 
   const flightData = flight?.data || null;
   const { airline, flightNumber, origin, destination, date, time } =
