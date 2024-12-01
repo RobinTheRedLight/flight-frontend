@@ -8,7 +8,9 @@ const FlightCard = ({ flight }) => {
       <div className="flex flex-col space-y-6">
         {/* Airline and Flight Number */}
         <div className="flex justify-between items-center">
-          <h3 className="text-2xl font-semibold text-gray-800">{flight.airline}</h3>
+          <h3 className="text-2xl font-semibold text-gray-800">
+            {flight.airline}
+          </h3>
           <span className="text-xl text-gray-500">{flight.flightNumber}</span>
         </div>
 
@@ -45,11 +47,6 @@ const FlightCard = ({ flight }) => {
             <span>View Details</span>
             <FaArrowRight className="ml-2" />
           </Link>
-
-          {/* Book Now Button */}
-          <button className="px-6 py-2 text-white bg-green-600 rounded-full hover:bg-green-700 transition-all duration-200">
-            Book Now
-          </button>
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import { useGetFlightDetailsQuery } from "../../redux/features/flights/flightsApi";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +16,7 @@ import {
   FaClipboardCheck,
 } from "react-icons/fa";
 import { useCreateBookingMutation } from "../../redux/features/bookings/bookingsApi";
+import BookModal from "../../components/BookModal";
 
 const FlightPage = () => {
   const params = useParams();
@@ -38,17 +41,46 @@ const FlightPage = () => {
       flightId: flight._id,
       numberOfSeats: Number(numberOfSeats),
     };
+
     console.log(bookingData);
 
+    const swalInstance = Swal.fire({
+      title: "Confirming your booking...",
+      text: "Please wait while we confirm your booking.",
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading(); 
+      },
+      allowOutsideClick: false, 
+    });
+
     try {
+   
       await createBooking(bookingData);
-      setOpenModal(false); // Close modal on success
-      alert("Booking created successfully!");
-      // Optionally navigate to another page, like user bookings page
-      // navigate('/user-bookings');
+
+   
+      swalInstance.close();
+      Swal.fire({
+        title: "Success!",
+        text: "Your booking was created successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+
+        setOpenModal(false);
+
+
+        navigate("/");
+      });
     } catch (error) {
-      console.error("Booking failed", error);
-      alert("There was an error with your booking.");
+  
+      swalInstance.close();
+      Swal.fire({
+        title: "Error!",
+        text: "There was an error with your booking.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -179,88 +211,14 @@ const FlightPage = () => {
       </div>
 
       {/* Booking Modal */}
-      {openModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              Booking Information
-            </h2>
-
-            <div className="space-y-4">
-              {/* Name Input */}
-              <div>
-                <label className="block text-gray-700">Name</label>
-                <input
-                  type="text"
-                  value={user.name}
-                  readOnly
-                  className="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
-                />
-              </div>
-
-              {/* Email Input */}
-              <div>
-                <label className="block text-gray-700">Email</label>
-                <input
-                  type="email"
-                  value={user.email}
-                  readOnly
-                  className="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
-                />
-              </div>
-
-              {/* Phone Input */}
-              <div>
-                <label className="block text-gray-700">Phone</label>
-                <input
-                  type="text"
-                  value={user.phone || "Not Provided"}
-                  readOnly
-                  className="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
-                />
-              </div>
-
-              {/* Address Input */}
-              <div>
-                <label className="block text-gray-700">Address</label>
-                <input
-                  type="text"
-                  value={user.address || "Not Provided"}
-                  readOnly
-                  className="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
-                />
-              </div>
-
-              {/* Number of Seats Input */}
-              <div>
-                <label className="block text-gray-700">Number of Seats</label>
-                <input
-                  type="number"
-                  value={numberOfSeats}
-                  min="1"
-                  onChange={(e) => setNumberOfSeats(e.target.value)}
-                  className="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
-                />
-              </div>
-
-              <div className="mt-6 flex justify-between">
-                <button
-                  onClick={() => setOpenModal(false)}
-                  className="px-6 py-2 bg-gray-500 text-white rounded-lg"
-                >
-                  Close
-                </button>
-                <button
-                  onClick={handleBookingSubmit}
-                  className="px-6 py-2 bg-blue-600 text-white rounded-lg"
-                >
-                  Confirm Booking
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <BookModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        numberOfSeats={numberOfSeats}
+        setNumberOfSeats={setNumberOfSeats}
+        user={user}
+        handleBookingSubmit={handleBookingSubmit}
+      />
     </div>
   );
 };

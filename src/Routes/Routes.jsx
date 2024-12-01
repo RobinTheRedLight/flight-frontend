@@ -7,6 +7,7 @@ import AdminDashboard from "../Layout/AdminDashboard";
 import ManageFlights from "../Pages/Admin/ManageFlights";
 import FlightsPage from "../Pages/Flights/FlightsPage";
 import FlightPage from "../Pages/Flight/FlightPage";
+import ManageBookings from "../Pages/Admin/ManageBookings";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
         path: "admin/flights",
         element: <ManageFlights></ManageFlights>,
       },
+      {
+        path: "admin/bookings",
+        element: <ManageBookings></ManageBookings>,
+      }
     ],
   },
 ]);
